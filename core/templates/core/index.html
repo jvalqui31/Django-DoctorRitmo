@@ -1,0 +1,73 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block img-background %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+    <h1>Doctor Ritmo</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+      
+    <div class="row">
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="card bg-dark text-light">
+              <div class="card-body">
+                    <h3 class="card-title">Sobre Nosotros</h3>
+                    <p class="card-text">Doctor Ritmo es un colectivo que busca promover la producción de arte, principalmente la música, en todas las personas. Nuestra visión es simple: todos podemos ser artistas, ya que el arte es simplemente la expresión de las emociones humanas, que aplicada a la música se traduce en ritmos, sonidos y colores tonales que cada creador contiene en su interior... <a href="{% url 'about' %}">Read more</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="card bg-dark text-light">
+                <img class="card-img-top" src="{% static 'core/img/cursoscardindex.jpg' %}" alt="saxofon">
+                <div class="card-body">
+                    <h3 class="card-title">Cursos</h3>
+                    <p class="card-text">En Dr.Ritmo disponemos de una amplia gama de cursos no esperes más y elige el tuyo <a href="{% url 'portfolio' %}">AQUI.</a>.</p>
+                </div>
+            </div>
+        </div> 
+      <div class="col-md-4 mt-2 mb-2">
+        <div class="card bg-dark text-light">
+          <div class="card-header"><h3>Conversor de Divisas</h3></div>
+          <div class="card-body">
+            <br>
+            <input type="number" class="form-control" id="cantidad" name="Ingrese Cantidad" placeholder="Ingrese cantidad luego enter" onchange="convertir()">
+            <!--<input style="font-size: 1.69em" type="range" id="cantidad" min="0" max="10000" value="0" onchange="convertir()">-->
+            <span id="valor" style="font-size: larger; display: none;" ></span><br><br>
+            <label id="divisaslabel">Desde: </label>
+            <select id="de" onchange="convertir()">
+              <option value="1">CLP</option>
+              <option value="2">Dolar</option>
+              <option value="3">Euro</option>
+            </select>
+            <label id="divisaslabel">Hacia: </label>
+            <select id="a" onchange="convertir()">
+              <option value="1">CLP</option>
+              <option value="2">Dolar</option>
+              <option value="3">Euro</option>
+            </select>
+            <br><br>
+            <div class="card-footer">
+              <h5 id="resultado" style="text-align: center;"></h1>
+            </div>
+           </div>
+        </div>
+    </div>
+        <div class="col-md-4 mt-2 mb-2">
+          <div class="card bg-dark text-light">
+            <div class="card-body">
+                  <h3 class="card-title">Pistas Musicales</h3>
+                  <p class="card-text">Necesitas un beat para tu tema musical en este apartado encontraras un gran repertorio de beats y si no encuentras el que necesitas podemos hacer uno personalizado solo contactanos <a href="beats.html">Read more</a></p>
+              </div>
+          </div>
+      </div>
+      </div> 
+</div>
+{% endblock %}
+

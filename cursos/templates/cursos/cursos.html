@@ -1,0 +1,84 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Cursos{% endblock %}
+
+{% block img-background %}{% static 'core/img/cursos-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+    <h1>Cursos</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        {% if 'OK' in request.GET %}
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> Curso Modificado satisfactoriamente...
+            </div>
+        {% endif %}
+        {% if 'FAIL' in request.GET %}
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Danger!</strong> No se pudo modificar el curso... inténtalo más tarde
+            </div>
+        {% endif %}
+        <div class="row bg-dark text-white p-2 mb-1 mt-1 rounded">
+            <div class="col">
+                <a href="{% url 'add_curso' %}">
+                    <button class="btn btn-primary py-1 rounded">Agregar Curso</button >
+                </a>  
+            </div>
+            <div class="col text-center">
+                <h3>Listado de Cursos</h3>
+            </div>
+            <div class="col">
+                <form class="d-flex">
+                    <input id="texto_buscado" class="form-control me-2 py-1" type="search" placeholder="Search" aria-label="Search">
+                  </form>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="table-responsive bg-dark text-white" id="datos_tabla">
+                <table class="table table-hover ">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Cupos</th>
+                            <th>Imagen</th>
+                            <th>Docente</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in cursos %}
+                            <tr>
+                                <td>{{c.idCurso}}</td>
+                                <td>{{c.descripcion}}</td>
+                                <td>{{c.precio}}</td>
+                                <td>{{c.stock}}</td>
+                                {% if c.imagen %}
+                                    <td><img class="img-producto" src="{{c.imagen.url}}" alt=""></td>
+                                {% else %}
+                                    <td><img class="img-producto" src="{% static 'core/img/image_not_found.jpg' %}" alt=""></td>
+                                {% endif %}
+                                <td>{{c.docente}}</td>
+                                <td>
+                                    <a class="btn btn-success py-1 rounded" href="{% url 'mod_curso' c.idCurso %}">Modificar</a><br>
+                                    <a class="btn btn-danger py-1 rounded" href="{% url 'del_curso' c.idCurso %}">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>         
+       
+{% endblock %}
+
+

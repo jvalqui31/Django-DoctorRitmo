@@ -1,0 +1,134 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block img-background %}{% static 'core/img/contact-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+<h1>Contacto</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4 mb-4">
+            {% if 'OK' in request.GET %}
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong>Formulario enviado satisfactoriamente...
+                </div>
+            {% endif %}
+            {% if 'FAIL' in request.GET %}
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Danger!</strong> No se pudo enviar el mensaje... inténtalo más tarde
+                </div>
+            {% endif %}
+            <div class="row bg-dark text-white p-2 mb-4 rounded">
+                <div class="col text-center"></div>
+                <div class="col text-center">
+                <h3>Formulario</h3>
+                </div>
+                <div class="col text-right">
+                    <a href="{% url 'listar-contactos' %}">
+                        <img src="https://img.icons8.com/fluent/40/000000/agreement-new.png"/>
+                    </a>
+                </div>
+            </div>
+            <div class="row justify-content-center">            
+                <div class="col-md-6">
+                    <form class="contact-form" method="post"  onsubmit="return validation()">
+                    {% csrf_token %}
+                        <div class="card-body bg-dark text-white">                        
+                            <!--Agrupar componentes usando FORM-GROUP-->
+                            <div class="form-group">
+                                <label for="nombre" class="font-weight-bold">Nombre: </label> <span id="name-error" class="error" style="color: brown;"></span>
+                                <input class="form-control" type="text" name="name" id="user" placeholder="Ej. Luis Pérez">
+                            </div>
+                            <div class="form-group">
+                                <label for="rut" class="font-weight-bold">Rut: <span id="mob-error" class="error" style="color: brown;"></span> </label>
+                                <input class="form-control" type="text" name="rut" id="mob" placeholder="Ej. 12345678-9" >
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha_nacimiento" class="font-weight-bold">Fecha nacimiento:</label>
+                                <input class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" >
+                            </div>
+        
+                            <!--Agrupar componentes usando FORM-GROUP ROW-->
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-5 col-form-label font-weight-bold">Email: <span id="mail-error" class="error" style="color: brown;"></span></label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" type="email" name="email" id="mail" placeholder="Ej. correo@correo.com" >
+                                </div>                            
+                            </div>
+                            <div class="form-group row">
+                                <label for="password" class="col-sm-5 col-form-label font-weight-bold">Contraseña: <span id="pass-error" class="error" style="color: brown;"></span></label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" type="password" name="password" id="pass" >
+                                </div>                            
+                            </div>
+                            <div class="form-group row">
+                                <label for="confirm-password" class="col-sm-5 col-form-label font-weight-bold">Confirm pass: <span id="cnfpass-error" class="error" style="color: brown;"></span></label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" type="password" name="confirm-password" id="cnf-pass" >
+                                </div>
+                            </div>
+                           
+                            <!-- genero -->
+                                <div class="form-group">
+                                    <label for="genero" class="font-weight-bold">Genero:</label>
+                                    <select name="genero" id="genero" class="form-control" >
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                    </select>
+                                </div>
+
+                            <!-- instrumento que toca -->
+                                <div class="form-group">
+                                    <label for="instrumento" class="font-weight-bold">Instrumento que toca:</label>
+                                    <select name="instrumento" id="instrumento" class="form-control" >
+                                        <option value="Piano">Piano</option>
+                                        <option value="Guitarra">Guitarra</option>
+                                        <option value="Violín">Violín</option>
+                                        <option value="Bateria">Bateria</option>
+                                    </select>
+                                </div>
+
+                            <!-- Select o Combobox -->
+                                <div class="form-group">
+                                    <label for="comuna" class="font-weight-bold">Comuna:</label>
+                                    <select name="comuna" id="comuna" class="form-control" >
+                                        <option value="Santiago">Santiago</option>
+                                        <option value="Macul">Macul</option>
+                                        <option value="Ñuñoa">Ñuñoa</option>
+                                        <option value="Puente Alto">Puente Alto</option>
+                                        <option value="San Miguel">San Miguel</option>
+                                        <option value="San Joaquín">San Joaquín</option>
+                                        <option value="San Joaquín">Otra</option>
+                                    </select>
+                                </div>
+
+                                <!-- Textarea -->
+                                <div class="form-group">
+                                    <label for="comentarios" class="font-weight-bold">Comentarios:</label>
+                                    <textarea class="form-control" name="comentarios" id="comentarios" rows="5" id='contador' placeholder="Ingrese su comentario" onkeyup="textCounter(this,'contador',200); " ></textarea>
+                                    <label for="contador" class="font-weight-bold">Caracteres restantes:</label>
+                                    <input disabled maxlength="3" size="3" value="200" id="contador">
+                                </div>
+                           
+                                </div>
+                                <div class="card-footer text-center bg-dark text-white">
+                                <!-- Botones -->
+                                <div class="form-group">
+                                    <input class="btn btn-primary" type="submit" value="Registrar" id="registrar">
+                                    <input class="btn btn-danger" type="reset" value="Cancelar" id="cancelar">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    
+    

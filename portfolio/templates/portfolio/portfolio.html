@@ -1,0 +1,94 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Beats{% endblock %}
+
+{% block scripting %}
+{% endblock %}
+
+{% block img-background %}{% static 'core/img/portfolio-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+    <h1>Beats</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+            {% if 'OK' in request.GET %}
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong> Curso Agregado satisfactoriamente...
+                </div>
+            {% endif %}
+            {% if 'FAIL' in request.GET %}
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Danger!</strong> No se pudo agregar el curso... inténtalo más tarde
+                </div>
+            {% endif %}
+            <div class="row bg-dark text-white p-2 mb-4 mt-1 rounded">
+                <div class="col text-center"></div>
+                <div class="col text-center">
+                <h3>Listado de Beats</h3>
+                </div>
+                <div class="col text-right">
+                    <a href="{% url 'add_beats' %}">
+                        <img src="https://img.icons8.com/fluent/40/000000/agreement-new.png"/>
+                    </a>
+                </div>
+            </div>
+        {% for project in projects %}
+            <!-- Proyecto -->
+            <div class="row project">  	
+                <div class="col-lg-3 col-md-4 offset-lg-1">
+                    <img class="img-fluid" src="{{project.image.url}}" alt="">
+                </div>
+                <div class="col-lg-7 col-md-8">
+                    <h6 class="text-muted font-italic">Última modificación {{project.updated}}</h6>
+                    <h2 class="section-heading title">{{project.title}}</h2>   
+                    <p>{{project.description}}</p>
+                    {% if project.link %}
+                        <p><a href="{{project.link}}" target="_blank">Más información</a></p>
+                    {% endif %}                
+                </div>
+            </div>   
+        {% endfor %} 
+
+        <div class="row justify-content-center mt-4 mb-4">
+            {% if projects.has_other_pages %}
+                <nav aria-label="Paginación Proyectos">
+                    <ul class="pagination">
+                        {% if projects.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ projects.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                        <li class="page-item disable"><span class="page-link">&laquo;</span></li>
+                        {% endif %}
+
+                        {% for i in projects.paginator.page_range %}
+                            {% if projects.number == i %}
+                                <li class="page-item active"><span class="page-link">{{i}}<span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if projects.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ projects.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                        <li class="page-item disable"><span class="page-link">&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>    
+    </div>    
+
+{% endblock %}
+
+
+
+
+    
+    
+    

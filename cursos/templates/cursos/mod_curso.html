@@ -1,0 +1,78 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Modificar Curso{% endblock %}
+
+{% block img-background %}{% static 'core/img/cursos-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+    <h1>Modificar Cursos</h1>
+{% endblock %}
+
+{% block content %}
+    <main class="container">
+        <div class="row justify-content-center">          
+            <div class="col-md-6 bg-dark text-white p-5">
+                <div class="div mb-4">
+                </div>
+                <div class="div text-center text-white"><h2>Modificar el Curso</h2></div>
+                <form action="#" id="formulario" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group mt-4">
+                        <label class="fw-bold" id="idCurso">Código Curso</label>
+                        <div class="input-group">
+                            {{form.idCurso}}
+                        </div>
+                        {{form.idCurso.errors}}
+                    </div>
+                    <div class="form-group">
+                        <label class="fw-bold" id="descripcion">Descripción</label>
+                        <div class="input-group">
+                            {{form.descripcion}}
+                        </div>
+                        {{form.descripcion.errors}}
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <label class="fw-bold" id="precio">Precio</label>
+                        <div class="input-group">
+                            {{form.precio}}
+                        </div>
+                        {{form.precio.errors}}
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <label class="fw-bold" id="stock">Cupos</label>
+                        <div class="input-group">
+                            {{form.stock}}
+                        </div>
+                        {{form.stock.errors}}
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <label class="fw-bold" id="imagen">Imagen</label>
+                        <div class="input-group">
+                            {{form.imagen}}
+                        </div> <br>
+                        {% if form.instance.imagen %}
+                            <img src="{{form.instance.imagen.url}}" class="img-producto" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <label class="fw-bold" id="docente">Profesor</label>
+                        <div class="input-group">
+                            {{form.docente}}
+                        </div>
+                        {{form.docente.errors}}
+                    </div>
+                    <div class="div mt-4 mb-4 text-center">
+                        <button type="submit" class="btn btn-primary rounded">Modificar</button>
+                        <a  class="btn btn-secondary rounded" href="{% url 'cursos' %}">Volver</a>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </main>            
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'core/js/my-javascript-mod.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Agregar Curso{% endblock %}
+
+{% block img-background %}{% static 'core/img/cursos-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+    <h1>Agregar Cursos</h1>
+{% endblock %}
+
+{% block content %}
+    <main class="container">
+        {% if 'OK' in request.GET %}
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> Curso Agregado satisfactoriamente...
+            </div>
+        {% endif %}
+        {% if 'F' in request.GET %}
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Danger!</strong> No se pudo agregar el curso... inténtalo más tarde
+            </div>
+        {% endif %}
+        <div class="row justify-content-center">          
+            <div class="col-md-6 bg-dark text-white p-5">
+                <div class="div mb-4">
+                </div>
+                <div class="div text-center text-white"><h2>Ingresar Nuevo Curso</h2></div>
+                <form action="#" id="formulario" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group mt-4">
+                        <label class="fw-bold" id="idCurso">Código Curso</label>
+                        <div class="input-group">
+                            {{form.idCurso}}
+                        </div>
+                        {{form.idCurso.errors}}
+                    </div>
+                    <div class="form-group">
+                        <label class="fw-bold" id="descripcion">Descripción</label>
+                        <div class="input-group">
+                            {{form.descripcion}}
+                        </div>
+                        {{form.descripcion.errors}}
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <label class="fw-bold" id="precio">Precio</label>
+                        <div class="input-group">
+                            {{form.precio}}
+                        </div>
+                        {{form.precio.errors}}
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <label class="fw-bold" id="stock">Cupos</label>
+                        <div class="input-group">
+                            {{form.stock}}
+                        </div>
+                        {{form.stock.errors}}
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <label class="fw-bold" id="imagen">Imagen</label>
+                        <div class="input-group">
+                            {{form.imagen}}
+                        </div>
+                        {{form.imagen.errors}}
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <label class="fw-bold" id="docente">Profesor</label>
+                        <div class="input-group">
+                            {{form.docente}}
+                        </div>
+                        {{form.docente.errors}}
+                    </div>
+                    <div class="div mt-4 mb-4 text-center">
+                        <button type="submit" class="btn btn-primary rounded">Agregar</button>
+                        <a  class="btn btn-secondary rounded" href="{% url 'cursos' %}">Volver</a>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </main>            
+{% endblock %}

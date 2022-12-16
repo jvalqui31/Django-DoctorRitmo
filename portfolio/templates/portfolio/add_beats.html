@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Agregar Beats{% endblock %}
+
+{% block img-background %}{% static 'core/img/cursos-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+    <h1>Agregar Beats</h1>
+{% endblock %}
+
+{% block content %}
+    <main class="container">
+        <div class="row justify-content-center">          
+            <div class="col-md-6 bg-dark text-white p-4">
+                <div class="div text-center text-white"><h2>Ingresar Nuevo Beats</h2></div>
+                <form action="#" id="formulario" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group mt-4">
+                        <label class="fw-bold" id="idCurso">Título</label>
+                        <div class="input-group">
+                            {{form.title}}
+                        </div>
+                        {{form.title.errors}}
+                    </div>
+                    <div class="form-group">
+                        <label class="fw-bold" id="descripcion">Descripción</label>
+                        <div class="input-group">
+                            {{form.description}}
+                        </div>
+                        {{form.description.errors}}
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <label class="fw-bold" id="imagen">Imagen</label>
+                        <div class="input-group">
+                            {{form.image}}
+                        </div>
+                        {{form.image.errors}}
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <label class="fw-bold" id="precio">Link</label>
+                        <div class="input-group">
+                            {{form.link}}
+                        </div>
+                        {{form.link.errors}}
+                    </div>
+                    <div class="div mt-4 mb-4 text-center">
+                        <button type="submit" class="btn btn-primary rounded">Agregar</button>
+                        <a  class="btn btn-secondary rounded" href="{% url 'portfolio' %}">Volver</a>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </main>           
+{% endblock %}

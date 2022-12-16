@@ -1,0 +1,39 @@
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+}
+
+.oscuro{ 
+  background-color: #1f1f1f; 
+  color: #f1eded;
+  transition: 1s;
+}
+
+body.oscuro #contact-form{
+  color: #000000;
+}
+body.oscuro #luna{
+  color: #757575;
+}
+body.oscuro #activoTxtNav{
+  color: #bf9a7b;
+}
+  
+.claro{ 
+  background-color: #ffffff; 
+  color: #000000;
+  transition: 1s;
+}
+body.claro #activoTxtNav{
+  color: #bf9a7b;
+}
+
+body.claro #sol{
+  color: #ffc107;
+}
+
+.img-producto{
+  width: 100px;
+  height: 100px;
+}
+

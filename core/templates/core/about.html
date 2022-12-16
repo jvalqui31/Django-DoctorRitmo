@@ -1,0 +1,122 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Acerca de{% endblock %}
+
+{% block img-background %}{% static 'core/img/about-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+    <h1>Acerca de</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">   
+        <div class="col-lg-2 col-md-4 offset-lg-1">
+            <img class="img-fluid" src="{% static 'core/img/logo1.jpg' %}" alt="">
+        </div>
+        <div class="col-lg-7 col-md-8">
+            <h2 class="section-heading">Doctor Ritmo</h2>   
+            <p>
+                Doctor Ritmo es un colectivo que busca promover la producción de arte, 
+                principalmente la música, en todas las personas. Nuestra visión es simple: 
+                todos podemos ser artistas, ya que el arte es simplemente la expresión de 
+                las emociones humanas, que aplicada a la música se traduce en ritmos, 
+                sonidos y colores tonales que cada creador contiene en su interior. 
+                Gracias a esto, nace la ilusión de contribuir al mundo aportando herramientas 
+                que permitan a nuevos creadores emerger de sus zonas actuales de confort y 
+                llevarlos más allá, para que logren cumplir sus sueños. 
+                Doctor Ritmo tiene como misión entregar el conocimiento que posee para ayudar
+                a otros a cumplir sus sueños, enseñando sobre mixing, mastering, 
+                métodos creativos, planificación, poder personal y hábitos de éxito, 
+                a través de cursos gratuitos y mentorías pagadas. Además, 
+                produce su propia música, disponible en todas las plataformas de reproducción. 
+                Puedes conocer más sobre el arte de Doctor Ritmo en la sección "Beats". 
+            </p>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mt-2 mb-2">
+                <div class="card bg-dark text-light" style="max-width: 170px;">
+                    <img class="card-img-top" src="{% static 'core/img/felipe.jpg' %}" alt="Imagen">
+                    <div class="card-footer text-center">
+                        <a href="#" class="text-white" data-toggle="modal" data-target="#flipFlop">Felipe Soto</a>
+                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header bg-dark text-light">
+                                <h4 class="modal-title" id="modalLabel" style="font-weight: bold;" >Felipe Soto</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                                <div class="modal-body">
+                                  <img class="card-img-top" src="{% static 'core/img/felipe.jpg' %}" alt="felipe">
+                                </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                              </div>
+                            </div>
+                          </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-2 mb-2">
+              <div class="card bg-dark text-light" style="max-width: 190px;">
+                  <img class="card-img-top" src="{% static 'core/img/javi.jpeg' %}" alt="Imagen">
+                  <div class="card-footer text-center">
+                      <a href="#" class="text-white" data-toggle="modal" data-target="#flipFlop2">Javiera Valencia</a>
+                      <div class="modal fade" id="flipFlop2" tabindex="-1" role="dialog" aria-labelledby="modalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header bg-dark text-light">
+                              <h4 class="modal-title" id="modalLabel2" style="font-weight: bold;">Javiera Valencia</h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                              <div class="modal-body">
+                                <img class="card-img-top" src="{% static 'core/img/javi.jpeg' %}" alt="javiera">
+                              </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div> 
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4 mt-2 mb-2">
+            <div class="card bg-dark text-light" style="max-width: 190px;">
+                <img class="card-img-top" src="{% static 'core/img/miguel.jpeg' %}" alt="miguel">
+                <div class="card-footer text-center">
+                    <a href="#" class="text-white" data-toggle="modal" data-target="#flipFlop3">Miguel Bracho</a>
+                    <div class="modal fade" id="flipFlop3" tabindex="-1" role="dialog" aria-labelledby="modalLabel3" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header bg-dark text-light">
+                            <h4 class="modal-title" id="modalLabel3" style="font-weight: bold;">Miguel Bracho</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                            <div class="modal-body">
+                              <img class="card-img-top" src="{% static 'core/img/miguel.jpeg' %}" alt="miguel">
+                            </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                          </div>
+                        </div>
+                      </div> 
+                </div>
+            </div>
+        </div>
+      </div>
+    </div> 
+{% endblock %}
+

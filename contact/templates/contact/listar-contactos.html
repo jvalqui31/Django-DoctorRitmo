@@ -1,0 +1,66 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Listado de contactos{% endblock %}
+
+{% block img-background %}{% static 'core/img/contact-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+<h1>Contactos</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row bg-dark text-white p-2 mb-1 mt-1 rounded">
+        <div class="col">
+            <a href="{% url 'contact' %}">
+                <button class="btn btn-primary py-1 rounded">Volver</button >
+            </a>  
+        </div>
+        <div class="col text-center">
+            <h3>Contactos Listados</h3>
+        </div>
+        <div class="col">
+            <form class="d-flex">
+                <input id="texto_buscado" class="form-control me-2 py-1" type="search" placeholder="Search" aria-label="Search">
+            </form>
+        </div>  
+    </div>
+    <div class="container" style="font-size: 15px;">
+        <div class="row">
+            <div class="table-responsive bg-dark text-white" id="datos_tabla">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Rut</th>
+                            <th>Fecha Nacimiento</th>
+                            <th>Email</th>
+                            <th>Genero</th>
+                            <th>Instrumento</th>
+                            <th>Comuna</th>
+                            <th>Comentarios</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in contact %}
+                            <tr>
+                                <td>{{c.name}}</td>
+                                <td>{{c.rut}}</td>
+                                <td>{{c.fecha_nacimiento}}</td>
+                                <td>{{c.email}}</td>
+                                <td>{{c.genero}}</td>
+                                <td>{{c.instrumento}}</td>
+                                <td>{{c.comuna}}</td>
+                                <td>{{c.comentarios}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+            
+{% endblock %}
+    
+    

@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Cursos{% endblock %}
+
+{% block img-background %}{% static 'core/img/cursos-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+    <h1>Cursos</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row bg-dark text-white p-2 mb-4 mt-1 rounded">
+            <div class="col text-center"></div>
+            <div class="col text-center">
+                <h3>Listado de Cursos</h3>
+            </div>
+            <div class="col text-right">
+                <a href="{% url 'cursos' %}">
+                    <img src="https://img.icons8.com/fluent/40/000000/agreement-new.png"/>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            {% for c in cursos %}
+                <div class="col-md-4 mt-2 mb-2"> <!--AQUI HACER EL FOR-->
+                    <div class="card bg-dark text-light">
+                        {% if c.imagen %}
+                                <img class="card-img-top" src="{{c.imagen.url}}" alt="guitarra">
+                            {% else %}
+                                <img class="card-img-top" src="{% static 'core/img/image_not_found.jpg' %}" alt="guitarra">
+                            {% endif %}
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-dark text-light"><h3 class="card-title text-center">{{c.descripcion}}</h3></li>
+                                <li class="list-group-item bg-dark text-light"><p class="card-text font-weight-bold">Profesor..:{{c.docente}}</p></li>
+                                <li class="list-group-item bg-dark text-light"><p class="card-text font-weight-bold">Cupos.....:{{c.stock}}</p></li>
+                                <li class="list-group-item bg-dark text-light"><p class="card-text font-weight-bold">Valor.....:${{c.precio}}</p></li>
+                            </ul></div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <a href="{% url 'contact' %}" class="btn btn-secondary py-1 rounded text-center">Contáctenos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+       
+{% endblock %}
+
+
